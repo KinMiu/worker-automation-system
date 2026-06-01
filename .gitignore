@@ -1,0 +1,7 @@
+node_modules
+# prisma
+# Keep environment variables out of version control
+.env
+mqtt-load-test.js
+
+/prisma
