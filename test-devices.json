@@ -1,0 +1,57 @@
+[
+  {
+    "deviceId": "07b7ccca-1dde-4eeb-888c-0e582851cf97",
+    "macAddress": "FF:EE:DD:CC:BB:01",
+    "components": {
+      "Suhu Udara": "e5b1ae1b-3fc8-47fd-9f1e-eea20848ec2d",
+      "Kelembaban Udara": "83532a73-6941-411a-90f3-76fe7657453b",
+      "Suhu Tanah": "02d49834-8dad-4cb5-a15a-9d884c3f4c6b",
+      "Kelembaban Tanah": "bc655c0d-2d08-4e8a-b206-fa031b473038",
+      "Intensitas Cahaya": "1d4ce9bb-d130-4bfe-bbc2-4d164da3de41"
+    }
+  },
+  {
+    "deviceId": "5669e8e6-dccb-4cf0-8e4d-9f055cc02fb5",
+    "macAddress": "FF:EE:DD:CC:BB:02",
+    "components": {
+      "Suhu Udara": "61ce808b-d0bf-4abe-bc98-5afc4b519976",
+      "Kelembaban Udara": "34834511-9dd3-4b30-9fb1-d19d54ece0c6",
+      "Suhu Tanah": "616460da-71de-4084-9347-4d859a357324",
+      "Kelembaban Tanah": "d7369601-d2c0-41ff-9c11-1014c4bab69b",
+      "Intensitas Cahaya": "80a59eb7-c128-4df5-b05d-5104dd82d44e"
+    }
+  },
+  {
+    "deviceId": "5efd5a7b-e5df-4ffa-8b83-2907ce8764e5",
+    "macAddress": "FF:EE:DD:CC:BB:03",
+    "components": {
+      "Suhu Udara": "ead1cd01-f0fa-4495-9d59-2b2e4b70061d",
+      "Kelembaban Udara": "765a1194-25b6-44a6-840f-3490a569250c",
+      "Suhu Tanah": "dea51120-ff7e-463c-8518-607b39a141a4",
+      "Kelembaban Tanah": "c1770b71-5fef-4166-abbf-ac5facbd994e",
+      "Intensitas Cahaya": "f952bbe9-4ffe-4654-8834-6ced291fa226"
+    }
+  },
+  {
+    "deviceId": "7b424838-3bde-4d74-a5e4-da3889a57499",
+    "macAddress": "FF:EE:DD:CC:BB:04",
+    "components": {
+      "Suhu Udara": "a14f37a9-1bae-49e3-a534-cafab26aff61",
+      "Kelembaban Udara": "a2b94171-e21b-4748-9fc7-628785a7abab",
+      "Suhu Tanah": "87558dc4-5f20-4b26-b057-1ef67d6cdafb",
+      "Kelembaban Tanah": "694be505-ca41-4be8-a904-4c12db0c9025",
+      "Intensitas Cahaya": "99d5574f-c197-4532-9467-42fd002447d3"
+    }
+  },
+  {
+    "deviceId": "d9fb5405-0f1d-4ff3-b5ff-f070a9a8f376",
+    "macAddress": "FF:EE:DD:CC:BB:05",
+    "components": {
+      "Suhu Udara": "4f9707cc-64ca-487c-a50a-8466c72430f5",
+      "Kelembaban Udara": "852c006a-1b95-4f36-a16c-8259894a9c18",
+      "Suhu Tanah": "75292c74-bf1c-45e7-bd3a-f9ef7b2e2c7c",
+      "Kelembaban Tanah": "3507982b-ea8d-46d1-b720-5fb506abc76c",
+      "Intensitas Cahaya": "9db39bac-0643-41ab-9a9a-b1da021402b3"
+    }
+  }
+]
