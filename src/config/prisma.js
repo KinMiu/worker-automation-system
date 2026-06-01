@@ -9,7 +9,10 @@ dotenv.config();
 // console.log(process.env.DATABASE_URL);
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString:
+    process.env.NODE_ENV === "development"
+      ? process.env.DATABASE_URL_DEV
+      : process.env.DATABASE_URL_PROD,
 });
 
 const adapter = new PrismaPg(pool);
