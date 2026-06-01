@@ -4,4 +4,4 @@ node_modules
 .env
 mqtt-load-test.js
 
-/prisma
+

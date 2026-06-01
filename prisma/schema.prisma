@@ -1,0 +1,183 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+  role     Role
+
+  greenhouseId String?
+  staffOf      Greenhouse? @relation("StaffGreenhouse", fields: [greenhouseId], references: [id])
+
+  staffRoleId String?
+  staffRoles  StaffRoles? @relation(fields: [staffRoleId], references: [id])
+
+  ownedGreenhouses Greenhouse[] @relation("OwnerGreenhouse")
+
+  isActive  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Greenhouse {
+  id       String  @id @default(uuid())
+  name     String
+  location String?
+
+  ownerId String
+  owner   User   @relation("OwnerGreenhouse", fields: [ownerId], references: [id])
+
+  staff User[] @relation("StaffGreenhouse")
+
+  staffRoles StaffRoles[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  areas     Area[]
+  devices   Device[]
+
+  @@index([ownerId])
+}
+
+model StaffRoles {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  permissions Json
+
+  greenhouseId String
+  greenhouse   Greenhouse @relation(fields: [greenhouseId], references: [id])
+
+  users User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, greenhouseId])
+}
+
+model Area {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  greenhouseId String
+  greenhouse   Greenhouse @relation(fields: [greenhouseId], references: [id], onDelete: Cascade)
+
+  devices Device[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, greenhouseId])
+}
+
+model Device {
+  id         String @id @default(uuid())
+  name       String
+  macAddress String @unique
+
+  lastSeen DateTime?
+
+  greenhouseId String
+  greenhouse   Greenhouse @relation(fields: [greenhouseId], references: [id], onDelete: Cascade)
+
+  areaId String?
+  area   Area?   @relation(fields: [areaId], references: [id], onDelete: SetNull)
+
+  components DeviceComponents[]
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  sensorDatas SensorData[]
+
+  statusLogs  DeviceStatusLog[]
+  automations Automation[]
+}
+
+model DeviceStatusLog {
+  id String @id @default(uuid())
+
+  deviceId String
+  device   Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  state  String
+  reason String?
+
+  createAt DateTime @default(now())
+}
+
+model DeviceComponents {
+  id       String     @id @default(uuid())
+  name     String
+  type     DeviceType
+  category String?
+  unit     String?
+  pin      String?
+
+  deviceId String
+  device   Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  sensorDatas SensorData[]
+  automations Automation[]
+}
+
+model SensorData {
+  id String @id @default(uuid())
+
+  deviceId String
+  device   Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  componentId String?
+  component   DeviceComponents? @relation(fields: [componentId], references: [id])
+
+  type  String?
+  value Float
+  unit  String?
+
+  deviceTime DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Automation {
+  id String @id @default(uuid())
+
+  deviceId String
+  device   Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  componentId String
+  component   DeviceComponents? @relation(fields: [componentId], references: [id])
+
+  action String
+
+  time     String
+  duration Int
+
+  isActive Boolean
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  OWNER
+  STAFF
+}
+
+enum DeviceType {
+  SENSOR
+  ACTUATOR
+}
